@@ -3,6 +3,9 @@
 
   <xacro:include filename="$(find nextagea_description)/urdf/common.xacro" />
 
+  <xacro:property name="namespace" default="/nextagea/" />
+  <xacro:property name="nextagea_gazebo_ros_control" default="true" />
+
   <xacro:gazebo_nx_link name="WAIST" color="Black" />
   <link name="WAIST">
     <visual>
@@ -655,9 +658,13 @@
 
 
   <!-- Gazebo plugin for ROS Control -->
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" />
-  </gazebo>
+  <xacro:if value="${nextagea_gazebo_ros_control}">
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>${namespace}</robotNamespace>
+      </plugin>
+    </gazebo>
+  </xacro:if>
 
   <!-- Gazebo-Specific Link Properties -->
   <gazebo reference="CHEST_JOINT0">

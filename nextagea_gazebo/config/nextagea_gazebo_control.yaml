@@ -1,12 +1,12 @@
 gazebo_ros_control:
   pid_gains:
-    LARM_JOINT0: {p: 80000,  d: 5, i: 0, i_clamp: 1}
+    LARM_JOINT0: {p: 10000,  d: 5, i: 0, i_clamp: 1}
     LARM_JOINT1: {p: 60000,  d: 2, i: 0, i_clamp: 1}
     LARM_JOINT2: {p: 40000,  d: 0.5, i: 0, i_clamp: 1}
     LARM_JOINT3: {p: 1000,  d: 0.2, i: 0, i_clamp: 1}
     LARM_JOINT4: {p: 500,  d: 0.1, i: 0, i_clamp: 1}
     LARM_JOINT5: {p: 500,  d: 0.01, i: 0, i_clamp: 1}
-    RARM_JOINT0: {p: 80000,  d: 5, i: 0, i_clamp: 1}
+    RARM_JOINT0: {p: 10000,  d: 5, i: 0, i_clamp: 1}
     RARM_JOINT1: {p: 60000,  d: 2, i: 0, i_clamp: 1}
     RARM_JOINT2: {p: 40000,  d: 0.5, i: 0, i_clamp: 1}
     RARM_JOINT3: {p: 1000,  d: 0.2, i: 0, i_clamp: 1}
