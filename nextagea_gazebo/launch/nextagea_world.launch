@@ -45,9 +45,8 @@
     <node ns="nextagea" name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="true"/>
   </group>
 
-
   <!-- Load universal robotic description format (URDF) -->
-  <arg name="model" value="$(find nextagea_description)/urdf/NextageAOpen_gazebo.urdf.xacro" />
+  <arg name="model" default="$(find nextagea_description)/urdf/NextageAOpen_gazebo.urdf.xacro" />
   <param name="robot_description" command="xacro '$(arg model)'" />
   <node ns="nextagea" pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
         args="$(arg gzpose) -J LARM_JOINT2 -2.0 -J RARM_JOINT2 -2.0 -urdf -model NextageAOpen -param /robot_description -gazebo_namespace /nextagea/gazebo" />

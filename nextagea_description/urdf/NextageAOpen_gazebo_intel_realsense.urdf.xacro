@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="NextageAOpen"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="fixed_base" value="True" />
+  
+  <xacro:include filename="$(find nextagea_description)/urdf/NextageAOpen_gazebo.urdf.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/accessories/d435.urdf.xacro"/>
+
+  <!-- Attach the RealSense D435 -->
+  <joint name="d435_mount_joint" type="fixed">
+      <origin xyz="0 0 0.165" rpy="0 0.325 0"/>
+      <parent link="HEAD_JOINT1_Link"/>
+      <child link="d435_Mount_Link"/>
+  </joint>
+
+  <link name="d435_Mount_Link">
+    <inertial>
+        <mass value="0.01"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <xacro:sphere_inertia_def radius="0.02" mass="0.01"/>
+    </inertial>
+  </link>
+
+  <xacro:sensor_d435 name="/nextagea/realsense" parent="d435_Mount_Link">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:sensor_d435>
+
+</robot>

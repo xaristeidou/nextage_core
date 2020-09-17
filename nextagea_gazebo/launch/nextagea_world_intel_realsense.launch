@@ -1,0 +1,8 @@
+<launch>
+  <arg name="urdf" default="$(find nextagea_description)/urdf/NextageAOpen_gazebo_intel_realsense.urdf.xacro" />
+
+  <include file="$(find nextagea_gazebo)/launch/nextagea_world.launch">
+    <arg name="model" value="$(arg urdf)"/>
+  </include>
+
+</launch>
