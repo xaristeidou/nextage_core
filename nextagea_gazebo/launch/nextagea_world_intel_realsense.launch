@@ -1,7 +1,7 @@
 <launch>
-  <arg name="model" default="$(find nextagea_description)/urdf/NextageAOpen_gazebo_intel_realsense.urdf.xacro" />
   <arg name="spawn_controllers" default="true" />
   <arg name="controllers_include" default="$(find nextagea_gazebo)/launch/nextagea_gazebo_control.launch" />
+  <arg name="urdf" default="$(find nextagea_description)/urdf/NextageAOpen_gazebo_intel_realsense.urdf.xacro" />
 
   <arg name="use_ft_sensors" default="true" />
   <arg name="use_hand_cameras" default="true" />
