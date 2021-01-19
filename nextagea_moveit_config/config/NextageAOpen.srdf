@@ -42,10 +42,21 @@
         <group name="rarm" />
     </group>
     <group name="whole_body">
-        <group name="torso" />
-        <group name="larm" />
-        <group name="rarm" />
-        <group name="head" />
+        <joint name="LARM_JOINT0" />
+        <joint name="LARM_JOINT1" />
+        <joint name="LARM_JOINT2" />
+        <joint name="LARM_JOINT3" />
+        <joint name="LARM_JOINT4" />
+        <joint name="LARM_JOINT5" />
+        <joint name="RARM_JOINT0" />
+        <joint name="RARM_JOINT1" />
+        <joint name="RARM_JOINT2" />
+        <joint name="RARM_JOINT3" />
+        <joint name="RARM_JOINT4" />
+        <joint name="RARM_JOINT5" />
+        <joint name="CHEST_JOINT0" />
+        <joint name="HEAD_JOINT0" />
+        <joint name="HEAD_JOINT1" />
     </group>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="CHEST_JOINT0_Link" link2="HEAD_JOINT0_Link" reason="Adjacent" />
