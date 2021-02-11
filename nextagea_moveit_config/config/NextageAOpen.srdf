@@ -79,6 +79,9 @@
     <disable_collisions link1="HEAD_JOINT1_Link" link2="nextage_base" reason="Never" />
     <disable_collisions link1="HEAD_JOINT1_Link" link2="nextagea_realsense_link" reason="Adjacent" />
 
+    <disable_collisions link1="CAMERA_HEAD_L_Link" link2="HEAD_JOINT1_Link" reason="Adjacent" />
+    <disable_collisions link1="CAMERA_HEAD_R_Link" link2="HEAD_JOINT1_Link" reason="Adjacent" />
+
     <disable_collisions link1="LARM_JOINT0_Link" link2="LARM_JOINT1_Link" reason="Adjacent" />
     <disable_collisions link1="LARM_JOINT0_Link" link2="RARM_JOINT0_Link" reason="Never" />
     <disable_collisions link1="LARM_JOINT0_Link" link2="WAIST" reason="Never" />
