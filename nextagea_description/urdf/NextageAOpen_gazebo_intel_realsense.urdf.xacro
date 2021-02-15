@@ -122,10 +122,10 @@
         <infrared1CameraInfoTopicName>infrared/camera_info</infrared1CameraInfoTopicName>
         <infrared2TopicName>infrared2/image_raw</infrared2TopicName>
         <infrared2CameraInfoTopicName>infrared2/camera_info</infrared2CameraInfoTopicName>
-        <colorOpticalframeName>camera_color_optical_frame</colorOpticalframeName>
-        <depthOpticalframeName>camera_depth_optical_frame</depthOpticalframeName>
-        <infrared1OpticalframeName>camera_left_ir_optical_frame</infrared1OpticalframeName>
-        <infrared2OpticalframeName>camera_right_ir_optical_frame</infrared2OpticalframeName>
+        <colorOpticalframeName>nextagea_realsense_color_optical_frame</colorOpticalframeName>
+        <depthOpticalframeName>nextagea_realsense_depth_optical_frame</depthOpticalframeName>
+        <infrared1OpticalframeName>nextagea_realsense_left_ir_optical_frame</infrared1OpticalframeName>
+        <infrared2OpticalframeName>nextagea_realsense_right_ir_optical_frame</infrared2OpticalframeName>
         <rangeMinDepth>0.1</rangeMinDepth>
         <rangeMaxDepth>10</rangeMaxDepth>
         <pointCloud>1</pointCloud>
