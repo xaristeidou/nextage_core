@@ -4,76 +4,76 @@
 joint_limits:
   CHEST_JOINT0:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 2.513274
     has_acceleration_limits: false
     max_acceleration: 0
   HEAD_JOINT0:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.684611
     has_acceleration_limits: false
     max_acceleration: 0
   HEAD_JOINT1:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.684611
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT0:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 3.892084
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT1:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 2.426008
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT2:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 3.630285
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT3:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT4:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
   LARM_JOINT5:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT0:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 3.892084
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT1:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 2.426008
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT2:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 3.630285
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT3:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT4:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
   RARM_JOINT5:
     has_velocity_limits: true
-    max_velocity: 1
+    max_velocity: 6.352998
     has_acceleration_limits: false
     max_acceleration: 0
