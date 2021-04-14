@@ -1,8 +1,8 @@
 moveit_setup_assistant_config:
   URDF:
     package: nextagea_description
-    relative_path: urdf/NextageAOpen.urdf.xacro
-    xacro_args: ""
+    relative_path: urdf/NextageAOpen_gazebo_intel_realsense.urdf.xacro
+    xacro_args: "use_ft_sensors:=True use_hand_cameras:=True"
   SRDF:
     relative_path: config/NextageAOpen.srdf
   CONFIG:
