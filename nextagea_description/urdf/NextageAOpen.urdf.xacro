@@ -79,14 +79,16 @@
   <xacro:macro name="nxao_ft_sensor" params="prefix parent">
     <xacro:if value="${prefix == 'L'}">
       <xacro:property name="m" value="+1" />
+      <xacro:property name="ft_side" value="left" />
     </xacro:if>
 
     <xacro:if value="${prefix == 'R'}">
       <xacro:property name="m" value="-1" />
+      <xacro:property name="ft_side" value="right" />
     </xacro:if>
 
     <xacro:gazebo_nx_link name="${prefix}ARM_ft_Link" color="LightGrey" />
-    <link name="${prefix}ARM_ft_Link">
+    <link name="${prefix}ARM_ft_Link_base">
       <visual>
         <origin xyz="0 0 0.0185" rpy="0 0 0"/>
         <geometry>
@@ -112,10 +114,58 @@
 
     <joint name="${prefix}ARM_ft_joint" type="fixed">
       <parent link="${parent}"/>
-      <child link="${prefix}ARM_ft_Link"/>
+      <child link="${prefix}ARM_ft_Link_base"/>
       <origin xyz="0 0 -0.037" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
     </joint>
+
+    <link name="${prefix}ARM_ft_Sensor_Link">
+      <inertial>
+        <mass value="0.0001" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:nxa_sphere_inertia_def radius="0.0001" mass="0.0001"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}ARM_ft_Link">
+      <inertial>
+        <mass value="0.0001" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:nxa_sphere_inertia_def radius="0.0001" mass="0.0001"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}ARM_ft_sensor_joint" type="fixed">
+      <parent link="${prefix}ARM_ft_Link_base"/>
+      <child link="${prefix}ARM_ft_Sensor_Link"/>
+      <origin xyz="0 0 0" rpy="0 3.1415 1.57"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="${prefix}ARM_ft_sensor_offset_joint" type="fixed">
+      <parent link="${prefix}ARM_ft_Sensor_Link"/>
+      <child link="${prefix}ARM_ft_Link"/>
+      <origin xyz="0 0 0" rpy="0 3.1415 1.57"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <gazebo reference="${prefix}ARM_ft_sensor_joint">
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+      <sensor name="${prefix}ARM_ft_sensor" type="force_torque">
+        <force_torque>
+          <frame>parent</frame>
+          <measure_direction>child_to_parent</measure_direction>
+        </force_torque>
+      </sensor>
+    </gazebo>
+    <gazebo>
+        <plugin name="${prefix}ARM_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+            <updateRate>500.0</updateRate>
+            <topicName>ft_${ft_side}/data</topicName>
+            <jointName>${prefix}ARM_ft_sensor_joint</jointName>
+        </plugin>
+    </gazebo>
+
   </xacro:macro>
 
   <xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
