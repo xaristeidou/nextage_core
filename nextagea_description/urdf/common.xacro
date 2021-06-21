@@ -35,10 +35,11 @@
                 <material>Gazebo/${color}</material>
                 <mu1 value="1.0" />
                 <mu2 value="1.0" />
-                <kp  value="1000000.0" />
-                <kd  value="100.0" />
+                <kp  value="1e5" />
+                <kd  value="1e2" />
                 <maxVel  value="100.0" />
                 <minDepth  value="0.0" />
+                <dampingFactor>0.01</dampingFactor>
             </gazebo>
         </xacro:macro>
 
