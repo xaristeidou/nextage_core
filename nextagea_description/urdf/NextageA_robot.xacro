@@ -638,6 +638,7 @@
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
         <robotNamespace>${namespace}</robotNamespace>
+        <eStopTopic>nextagea_hw/soft_estop</eStopTopic>
       </plugin>
     </gazebo>
   </xacro:if>
