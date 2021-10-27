@@ -10,6 +10,7 @@ include_directories(
 )
 
 install(PROGRAMS
+   scripts/go_home
    scripts/go_initial.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
