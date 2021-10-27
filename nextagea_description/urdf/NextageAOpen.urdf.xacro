@@ -20,6 +20,7 @@
   <xacro:include filename="$(find nextagea_description)/urdf/NextageA_robot.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/nxao_gz_camera.xacro" />
 
+  <xacro:arg name="fixed_base" default="true" />
   <xacro:arg name="use_hand_cameras" default="false"/>
   <xacro:arg name="use_ft_sensors" default="false"/>
 
@@ -169,6 +170,15 @@
   </xacro:macro>
 
   <xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
+
+  <xacro:if value="$(arg fixed_base)">
+    <link name="world"/>
+    <joint name="fixed" type="fixed">
+      <parent link="world"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0.85" rpy="0 0 0"/>
+    </joint>
+  </xacro:if>
 
   <xacro:if value="$(arg use_ft_sensors)">
     <xacro:nxao_ft_sensor prefix="L" parent="L${arm_tip}" />
