@@ -23,6 +23,8 @@
   <xacro:arg name="fixed_base" default="true" />
   <xacro:arg name="use_hand_cameras" default="false"/>
   <xacro:arg name="use_ft_sensors" default="false"/>
+  <xacro:arg name="use_cables_right" default="true"/>
+  <xacro:arg name="use_cables_left" default="true"/>
 
   <xacro:macro name="nxao_camera" params="prefix parent">
     <xacro:if value="${prefix == 'L'}">
@@ -192,4 +194,51 @@
     <xacro:property name="arm_tip" value="ARM_camera_Link" />
   </xacro:if>
 
+  <xacro:if value="$(arg use_cables_left)">
+    <joint name="LARM_JOINT4_Link_cables_joint" type="fixed">
+      <parent link="LARM_JOINT4_Link"/>
+      <child link="LARM_JOINT4_Link_cables"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="LARM_JOINT4_Link_cables">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:nxa_box_inertia_def x="0.016" y="0.006" z="0.012" mass="0.01"/>
+      </inertial>
+
+      <collision>
+        <origin xyz="0 0.08 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:if>
+
+  <xacro:if value="$(arg use_cables_right)">
+    <joint name="RARM_JOINT4_Link_cables_joint" type="fixed">
+      <parent link="RARM_JOINT4_Link"/>
+      <child link="RARM_JOINT4_Link_cables"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="RARM_JOINT4_Link_cables">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:nxa_box_inertia_def x="0.016" y="0.006" z="0.012" mass="0.01"/>
+      </inertial>
+
+      <collision>
+        <origin xyz="0 -0.08 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:if>
 </robot>
