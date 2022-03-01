@@ -3,7 +3,7 @@
   <arg name="paused" default="false"/>
   <arg name="gazebo_gui" default="true"/>
 
-  <include file="$(find nextagea_gazebo)/launch/nextagea_world.launch">
+  <include file="$(find nextagea_gazebo)/launch/nextagea.launch">
     <arg name="gui" value="$(arg gazebo_gui)"/>
     <arg name="paused" value="$(arg paused)"/>
   </include>

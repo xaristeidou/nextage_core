@@ -1,32 +1,34 @@
 <?xml version="1.0"?>
-<robot name="NextageAOpen"
-       xmlns:xi="http://www.w3.org/2001/xinclude"
-       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
-       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
-       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
-       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
-       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
-       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
-       xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find nextagea_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find nextagea_description)/urdf/common.xacro" />
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find nextagea_description)/urdf/NextageA_base.xacro" />
-  <xacro:include filename="$(find nextagea_description)/urdf/NextageA_robot.xacro" />
-  <xacro:include filename="$(find nextagea_description)/urdf/nxao_gz_camera.xacro" />
+	<!-- Immitate two head-mount cameras, each of which are not stereo camera
+		by themselves but are made to function as stereo by launch file https://github.com/tork-a/rtmros_nextage/blob/indigo-devel/nextage_ros_bridge/launch/nextage_ueye_stereo.launch 
+		Values in Gazebo plugin are originally copied from http://gazebosim.org/tutorials?tut=ros_gzplugins#camera
+		and only partially tailored as of May 2017 -->
 
-  <xacro:arg name="fixed_base" default="true" />
-  <xacro:arg name="use_hand_cameras" default="false"/>
-  <xacro:arg name="use_ft_sensors" default="false"/>
-  <xacro:arg name="use_cables_right" default="true"/>
-  <xacro:arg name="use_cables_left" default="true"/>
+	<!-- Properties -->
+	<xacro:property name="M_PI" value="3.1415926535897931" />
+	<xacro:property name="jnt_head_camera_displacement_x" value="0.0175" />
+	<xacro:property name="jnt_head_camera_displacement_y" value="0.0725" />
+	<xacro:property name="jnt_head_camera_displacement_z" value="0.105" />
+	<xacro:property name="jnt_head_camera_rot_y" value="0.25" />
+	<xacro:property name="link_head_camera_rot_z" value="0.05" />
+	<xacro:property name="jnt_hand_camera_displacement_x" value="0.0525" />
+	<xacro:property name="jnt_hand_camera_displacement_y" value="0.0525" />
+	<xacro:property name="jnt_hand_camera_displacement_z" value="0.0" />
+	<xacro:property name="jnt_hand_camera_rot_y" value="1.5708" />
+	<xacro:property name="link_hand_camera_rot_z" value="0.0" />
+	<xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
 
-  <xacro:macro name="nxao_camera" params="prefix parent">
+	<!-- Arguments  -->
+	<xacro:arg name="fixed_base" default="true" />
+	<xacro:arg name="use_hand_cameras" default="true"/>
+	<xacro:arg name="use_ft_sensors" default="true"/>
+	<xacro:arg name="use_cables_right" default="true"/>
+	<xacro:arg name="use_cables_left" default="true"/>
+
+	<!-- Camera macro -->
+	<xacro:macro name="nxao_camera" params="prefix parent">
     <xacro:if value="${prefix == 'L'}">
       <xacro:property name="m" value="+1" />
     </xacro:if>
@@ -79,6 +81,8 @@
       link_rotation_x="0" link_rotation_y="${M_PI/2}" link_rotation_z="-${link_hand_camera_rot_z}" />
   </xacro:macro>
 
+
+  <!-- FT Sensor macro -->
   <xacro:macro name="nxao_ft_sensor" params="prefix parent">
     <xacro:if value="${prefix == 'L'}">
       <xacro:property name="m" value="+1" />
@@ -168,11 +172,98 @@
             <jointName>${prefix}ARM_ft_sensor_joint</jointName>
         </plugin>
     </gazebo>
-
   </xacro:macro>
 
-  <xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
 
+	<!-- Adding camera for simulation -->
+	<xacro:macro name="camera_joint_link_gzplugin"
+		params="camera_name link_parent jnt_displacement_x jnt_displacement_y jnt_displacement_z jnt_rotation_x jnt_rotation_y jnt_rotation_z link_displacement_x link_displacement_y link_displacement_z link_rotation_x link_rotation_y link_rotation_z">
+		<joint name="${camera_name}" type="fixed">
+			<origin
+				xyz="${jnt_displacement_x} ${jnt_displacement_y} ${jnt_displacement_z}"
+				rpy="${jnt_rotation_x} ${jnt_rotation_y} ${jnt_rotation_z}" />
+			<parent link="${link_parent}" />
+			<child link="${camera_name}_Link" />
+		</joint>
+		<link name="${camera_name}_Link">
+			<visual>
+				<origin
+					xyz="${link_displacement_x} ${link_displacement_y} ${link_displacement_z}"
+					rpy="${link_rotation_x} ${link_rotation_y} ${link_rotation_z}" />
+				<geometry>
+					<cylinder length="0.01" radius="0.015" />
+				</geometry>
+				<material name="Blue" />
+			</visual>
+			<inertial>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="1e-6" />
+				<inertia ixx="1e-12" ixy="0.0" ixz="0.0" iyy="1e-12" iyz="0.0"
+					izz="1e-12" />
+			</inertial>
+		</link>
+		<gazebo reference="${camera_name}_Link">
+			<sensor type="camera" name="${camera_name}">
+				<update_rate>30.0</update_rate>
+				<camera name="${camera_name}">
+					<horizontal_fov>1.3962634</horizontal_fov>
+					<image>
+						<width>800</width>
+						<height>800</height>
+						<format>R8G8B8</format>
+					</image>
+					<clip>
+						<near>0.1</near>
+						<far>30</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<!-- Noise is sampled independently per pixel on each frame. That pixel's 
+							noise value is added to each of its color channels, which at that point lie 
+							in the range [0,1]. -->
+						<mean>0.0</mean>
+						<stddev>0.007</stddev>
+					</noise>
+				</camera>
+				<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>0.0</updateRate>
+					<cameraName>${camera_name}</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>${camera_name}_Link_frame</frameName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+				</plugin>
+			</sensor>
+		</gazebo>
+	</xacro:macro>
+
+
+	<!-- NOTE: The poses of headmount and hand cameras are NOT precisely adjusted to
+				the 3D model nor the actual hardware config. These configs
+				are meant for a rapid prototyping only.
+	-->
+
+	<xacro:camera_joint_link_gzplugin
+			camera_name="CAMERA_HEAD_L" link_parent="HEAD_JOINT1_Link"
+			jnt_displacement_x="${jnt_head_camera_displacement_x}" jnt_displacement_y="${jnt_head_camera_displacement_y}" jnt_displacement_z="${jnt_head_camera_displacement_z}"
+			jnt_rotation_x="0" jnt_rotation_y="${jnt_head_camera_rot_y}" jnt_rotation_z="0"
+			link_displacement_x="0.0325" link_displacement_y="0" link_displacement_z="0"
+			link_rotation_x="0" link_rotation_y="${M_PI/2}" link_rotation_z="-${link_head_camera_rot_z}" />
+
+	<xacro:camera_joint_link_gzplugin
+			camera_name="CAMERA_HEAD_R" link_parent="HEAD_JOINT1_Link"
+			jnt_displacement_x="${jnt_head_camera_displacement_x}" jnt_displacement_y="-${jnt_head_camera_displacement_y}" jnt_displacement_z="${jnt_head_camera_displacement_z}"
+			jnt_rotation_x="0" jnt_rotation_y="${jnt_head_camera_rot_y}" jnt_rotation_z="0"
+			link_displacement_x="0.0325" link_displacement_y="0" link_displacement_z="0"
+			link_rotation_x="0" link_rotation_y="${M_PI/2}" link_rotation_z="${link_head_camera_rot_z}" />
+
+  <!-- Deal with arguments -->
   <xacro:if value="$(arg fixed_base)">
     <link name="world"/>
     <joint name="fixed" type="fixed">
@@ -241,4 +332,5 @@
       </collision>
     </link>
   </xacro:if>
+
 </robot>

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    
+
     <xacro:property name="nextagea_common_guard" default="true"/>
     <xacro:if value="${nextagea_common_guard}">
         <xacro:property name="nextagea_common_guard" value="false"/>
-        
+
         <!-- Inertia macros -->
         <xacro:macro name="nxa_sphere_inertia_def" params="radius mass">
             <inertia ixx="${2/5*mass*radius*radius}" ixy="0" ixz="0" iyy="${2/5*mass*radius*radius}" iyz="0" izz="${2/5*mass*radius*radius}"/>

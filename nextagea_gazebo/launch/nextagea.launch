@@ -1,0 +1,12 @@
+<launch>
+  <arg name="spawn_controllers" default="true" />
+  <arg name="controllers_include" default="$(find nextagea_gazebo)/launch/include/nextagea_control.launch" />
+  <arg name="model" default="$(find nextagea_description)/urdf/nextagea.urdf.xacro" />
+
+  <include file="$(find nextagea_gazebo)/launch/include/gazebo.launch">
+    <arg name="model" value="$(arg model)"/>
+    <arg name="spawn_controllers" value="$(arg spawn_controllers)"/>
+    <arg name="controllers_include" value="$(arg controllers_include)"/>
+  </include>
+
+</launch>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="nextagea"
+       xmlns:xi="http://www.w3.org/2001/xinclude"
+       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find nextagea_description)/urdf/general/materials.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/general/common.xacro" />
+
+  <!-- Include the nextagea base, robot torso, and tools -->
+  <xacro:include filename="$(find nextagea_description)/urdf/base/nextagea_base.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/robot/nextagea_robot.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/tool/nxao_gz_camera.xacro" />
+
+  <!-- Include extensions here -->
+  <!-- e.g. <xacro:include filename="$(find nextage_extensions)/urdf/intel_realsense.xacro" /> -->
+  <xacro:include filename="$(find nextage_extensions)/urdf/imu.xacro" />
+  <!-- <xacro:include filename="$(find nextage_extensions)/urdf/hexe.xacro" /> -->
+  <!-- <xacro:include filename="$(find nextage_extensions)/urdf/robotiq_140_gripper.xacro" />
+  <xacro:include filename="$(find nextage_extensions)/urdf/robotiq_85_gripper.xacro" /> -->
+  <!-- <xacro:include filename="$(find nextage_extensions)/urdf/robolimb.xacro" /> -->
+  <xacro:include filename="$(find nextage_extensions)/urdf/kinect.xacro" />
+
+
+</robot>

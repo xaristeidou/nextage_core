@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find nextagea_description)/urdf/common.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/general/common.xacro" />
 
   <!-- Work-around for KDL base-link inertia problem; also adheres to ROS standard-->
   <link name="base_link"/>
