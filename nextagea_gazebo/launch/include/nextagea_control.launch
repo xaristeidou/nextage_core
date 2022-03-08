@@ -15,7 +15,6 @@
   <!-- please run the controller switch script in nextagea_gazebo/scripts to switch to rarm/larm from both arm controller-->
   <node ns="nextagea" name="stopped_controller_spawner" pkg="controller_manager"
         type="spawner" respawn="false"
-        output="screen" args="--stopped botharms_controller
-                              trajectory_controller
+        output="screen" args="--stopped
                               streaming_controller"/>
 </launch>

@@ -18,32 +18,62 @@
   <xacro:include filename="$(find nextagea_description)/urdf/general/common.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/base/nextagea_base.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/robot/nextagea_robot.xacro" />
-  <xacro:include filename="$(find nextagea_description)/urdf/tool/nxao_gz_camera.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/tool/nextagea_tools.xacro" />
 
   <!-- Include files for extensions here -->
   <xacro:include filename="$(find nextage_extensions)/urdf/intel_realsense.xacro" />
+  <xacro:include filename="$(find nextage_extensions)/urdf/azure_kinect.xacro" />
   <xacro:include filename="$(find nextage_extensions)/urdf/imu.xacro" />
   <xacro:include filename="$(find nextage_extensions)/urdf/hexe.xacro" />
   <xacro:include filename="$(find nextage_extensions)/urdf/robotiq_140_gripper.xacro" />
   <xacro:include filename="$(find nextage_extensions)/urdf/robotiq_85_gripper.xacro" />
   <xacro:include filename="$(find nextage_extensions)/urdf/robolimb.xacro" />
-  <xacro:include filename="$(find nextage_extensions)/urdf/kinect.xacro" />
 
   <!-- Include the nextagea base, robot torso, and tools -->
   <xacro:nextagea_robot/>
   <xacro:nextagea_base/>
-  <xacro:nextagea_tools use_hand_cameras="true" use_ft_sensors="true"/>
+  <xacro:nextagea_tools prefix="L" use_cables="true"/>
+  <xacro:nextagea_tools prefix="R" use_cables="false"/>
 
   <!-- Include files for extensions here -->
+  <xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
+  <xacro:property name="arm_tip" value="ARM_ft_Link" />
   <!-- Sensors -->
-  <xacro:intel_realsense/>
-  <xacro:imu/>
-  <xacro:nx_kinect/>
-  <!-- <xacro:hex_e/> -->
+  <xacro:nx_intel_realsense_mount/>
+
+  <xacro:imu parent="base_link">
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+  </xacro:imu>
+
+  <!-- Attach the HEX-E sensor  README -->
+
+  <xacro:property name="arm_tip" value="ARM_JOINT5_Link" />
+  <xacro:hex_e_ft_sensor prefix="LARM_" parent="L${arm_tip}" topic_name="ft_left/raw/data">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:hex_e_ft_sensor>
+
+  <xacro:hex_e_ft_sensor prefix="RARM_" parent="R${arm_tip}" topic_name="ft_right/raw/data">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:hex_e_ft_sensor>
+
+  <xacro:nx_kinect_mount/>
+
+  <!-- <xacro:nx_intel_realsense_azure_topics_mount/> -->
 
   <!-- Actuators -->
-  <!-- <xacro:robotiq_140/>
-  <xacro:robotiq_85/>
-  <xacro:robolimb/> -->
+  <xacro:property name="arm_tip" value="ARM_ft_Link" />
+
+  <xacro:robotiq_140_gripper prefix="left_" parent="L${arm_tip}">
+    <origin xyz="0 0 0" rpy="0 3.1415 0"/>
+  </xacro:robotiq_140_gripper>
+
+  <xacro:robotiq_85_gripper prefix="right_" parent="R${arm_tip}">
+      <origin xyz="0 0 0" rpy="0 3.1415 0"/>
+  </xacro:robotiq_85_gripper>
+
+  <!-- <xacro:robolimb_attach prefix="right" parent="R${arm_tip}">
+    <origin xyz="0 0 -0.12" rpy="3.14 0 -1.57"/>
+  </xacro:robolimb_attach> -->
+
 
 </robot>
