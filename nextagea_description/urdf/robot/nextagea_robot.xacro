@@ -2,8 +2,8 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find nextagea_description)/urdf/general/common.xacro" />
+  <xacro:include filename="$(find nextagea_description)/urdf/general/materials.xacro" />
 
-  <!-- nextagea robot macro -->
   <xacro:macro name="nextagea_robot" params="namespace:=/nextagea/ nextagea_gazebo_ros_control:=true">
 
     <!-- NOTE: The poses of headmount and hand cameras are NOT precisely adjusted to
