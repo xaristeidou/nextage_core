@@ -15,8 +15,6 @@
        xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Include files for vanilla base -->
-  <xacro:include filename="$(find nextagea_description)/urdf/general/materials.xacro" />
-  <xacro:include filename="$(find nextagea_description)/urdf/general/common.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/base/nextagea_base.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/robot/nextagea_robot.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/tool/nextagea_tools.xacro" />
@@ -26,7 +24,5 @@
   <xacro:nextagea_base/>
   <xacro:nextagea_tools prefix="L" use_cables="true"/>
   <xacro:nextagea_tools prefix="R" use_cables="false"/>
-
-  <!-- Include sensors/actuators instantiations here -->
 
 </robot>

@@ -21,7 +21,7 @@ joint_state_controller:
   publish_rate: 100
 
 streaming_controller:
-  type: streaming_controllers/JointGroupPositionController
+  type: position_controllers/JointGroupPositionController
   joints:
     - LARM_JOINT0
     - LARM_JOINT1
