@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Immitate two head-mount cameras, each of which are not stereo camera
+		by themselves but are made to function as stereo by launch file https://github.com/tork-a/rtmros_nextage/blob/indigo-devel/nextage_ros_bridge/launch/nextage_ueye_stereo.launch 
+		Values in Gazebo plugin are originally copied from http://gazebosim.org/tutorials?tut=ros_gzplugins#camera
+		and only partially tailored as of May 2017 -->
+
+  <xacro:macro name="nextagea_tools" params="prefix use_cables:=true">
+
+    <!-- Camera macro -->
+    <xacro:macro name="nxao_camera" params="prefix parent">
+      <xacro:if value="${prefix == 'L'}">
+        <xacro:property name="m" value="+1" />
+      </xacro:if>
+
+      <xacro:if value="${prefix == 'R'}">
+        <xacro:property name="m" value="-1" />
+      </xacro:if>
+
+      <xacro:gazebo_nx_link name="${prefix}ARM_camera_Link" color="Black" />
+      <link name="${prefix}ARM_camera_Link">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://nextagea_description/urdf/meshes/${prefix}_CAM.dae"/>
+          </geometry>
+        </visual>
+        <collision>
+          <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+          <geometry>
+            <cylinder length="0.05" radius="0.037"/>
+          </geometry>
+        </collision>
+        <collision>
+          <origin xyz="0.0525 ${m * 0.029} -0.02" rpy="0 0 0"/>
+          <geometry>
+            <box size="0.057 0.106 0.042"/>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass value="1.05156" />
+          <origin xyz="0.0 0.0 -0.08" rpy="0 -0 0"/>
+          <inertia ixx="0.00194072" ixy="${m * 1.1e-07}" ixz="-0.00042482" iyy="0.00209392" iyz="${m * 1.2e-07}" izz="0.00035788"/>
+        </inertial>
+      </link>
+
+      <joint name="${prefix}ARM_JOINT6" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${prefix}ARM_camera_Link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+      </joint>
+      <xacro:camera_joint_link_gzplugin
+        camera_name="CAMERA_HAND_${prefix}" link_parent="${parent}"
+        jnt_displacement_x="${jnt_hand_camera_displacement_x}"
+        jnt_displacement_y="${m * jnt_hand_camera_displacement_y}"
+        jnt_displacement_z="${jnt_hand_camera_displacement_z}"
+        jnt_rotation_x="0" jnt_rotation_y="${jnt_hand_camera_rot_y}" jnt_rotation_z="0"
+        link_displacement_x="0.0325" link_displacement_y="0" link_displacement_z="0"
+        link_rotation_x="0" link_rotation_y="${M_PI/2}" link_rotation_z="-${link_hand_camera_rot_z}" 
+      />
+
+    </xacro:macro>
+
+    <xacro:if value="${prefix == 'L'}">
+      <xacro:nxao_camera prefix="L" parent="LARM_JOINT5_Link" />
+    </xacro:if>
+
+    <xacro:if value="${prefix == 'R'}">
+      <xacro:nxao_camera prefix="R" parent="RARM_JOINT5_Link" />
+    </xacro:if>
+
+    <xacro:if value="${use_cables}">
+
+      <xacro:if value="${prefix == 'L'}">
+        <joint name="LARM_JOINT4_Link_cables_joint" type="fixed">
+          <parent link="LARM_JOINT4_Link"/>
+          <child link="LARM_JOINT4_Link_cables"/>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <axis xyz="0 0 1"/>
+        </joint>
+
+        <link name="LARM_JOINT4_Link_cables">
+          <inertial>
+            <mass value="0.01" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <xacro:nxa_box_inertia_def x="0.016" y="0.006" z="0.012" mass="0.01"/>
+          </inertial>
+          <collision>
+            <origin xyz="0 0.08 -0.1" rpy="0 0 0"/>
+            <geometry>
+              <sphere radius="0.1"/>
+            </geometry>
+          </collision>
+        </link>
+      </xacro:if>
+
+      <xacro:if value="${prefix == 'R'}">
+        <joint name="RARM_JOINT4_Link_cables_joint" type="fixed">
+          <parent link="RARM_JOINT4_Link"/>
+          <child link="RARM_JOINT4_Link_cables"/>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <axis xyz="0 0 1"/>
+        </joint>
+
+        <link name="RARM_JOINT4_Link_cables">
+          <inertial>
+            <mass value="0.01" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <xacro:nxa_box_inertia_def x="0.016" y="0.006" z="0.012" mass="0.01"/>
+          </inertial>
+
+          <collision>
+            <origin xyz="0 -0.08 -0.1" rpy="0 0 0"/>
+            <geometry>
+              <sphere radius="0.1"/>
+            </geometry>
+          </collision>
+        </link>
+      </xacro:if>
+
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

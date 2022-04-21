@@ -26,12 +26,12 @@ class SelfCollisionCheck:
         # Setup EXOTica scene with corresponding JointGroup
         init = exo.Initializers.SceneInitializer()
         init[1]['JointGroup'] = str(self.controller_type)
-        init[1]['URDF'] = '{nextagea_description}/urdf/NextageAOpen.urdf'
-        init[1]['SRDF'] = '{nextagea_moveit_config}/config/NextageAOpen.srdf'
+        init[1]['URDF'] = '{nextagea_description}/urdf/nextagea.urdf'
+        init[1]['SRDF'] = '{nextagea_moveit_config}/config/nextagea.srdf'
         init[1]['AlwaysUpdateCollisionScene'] = True
         init[1]['CollisionScene'] = 'CollisionSceneFCLLatest'
         self.scene = exo.Setup.create_scene(init)
-        
+
         self.mode = mode
         self.check_trajectory = False
         self.rate = rospy.Rate(10)

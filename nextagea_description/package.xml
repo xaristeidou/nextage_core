@@ -11,5 +11,4 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>xacro</build_depend>
   <exec_depend>xacro</exec_depend>
-  <depend>realsense2_description</depend>
 </package>
