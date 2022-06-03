@@ -49,4 +49,5 @@
       <remap from="joint_states" to="/nextagea/joint_states" />
     </node>
 
+    <node name="gazebo_unpause" pkg="nextagea_gazebo" type="unpause" respawn="false" output="screen"/>
   </launch>
