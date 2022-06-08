@@ -22,7 +22,7 @@
   <!-- Include the nextagea base, robot torso, and tools -->
   <xacro:nextagea_robot/>
   <xacro:nextagea_base/>
-  <xacro:nextagea_tools prefix="L" use_cables="true"/>
+  <xacro:nextagea_tools prefix="L" use_cables="false"/>
   <xacro:nextagea_tools prefix="R" use_cables="false"/>
 
 </robot>
