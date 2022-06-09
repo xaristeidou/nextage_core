@@ -19,10 +19,14 @@
   <xacro:include filename="$(find nextagea_description)/urdf/robot/nextagea_robot.xacro" />
   <xacro:include filename="$(find nextagea_description)/urdf/tool/nextagea_tools.xacro" />
 
+  <!-- Arguments for use_cables -->
+  <xacro:arg name="use_cables_left" default="false" />
+  <xacro:arg name="use_cables_right" default="false" />
+
   <!-- Include the nextagea base, robot torso, and tools -->
   <xacro:nextagea_robot/>
   <xacro:nextagea_base/>
-  <xacro:nextagea_tools prefix="L" use_cables="true"/>
-  <xacro:nextagea_tools prefix="R" use_cables="false"/>
+  <xacro:nextagea_tools prefix="L" use_cables="$(arg use_cables_left)"/>
+  <xacro:nextagea_tools prefix="R" use_cables="$(arg use_cables_right)"/>
 
 </robot>
