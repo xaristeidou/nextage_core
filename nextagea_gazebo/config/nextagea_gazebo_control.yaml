@@ -1,5 +1,8 @@
 gazebo_ros_control:
   pid_gains:
+    CHEST_JOINT0: {p: 80000,  d: 5, i: 0, i_clamp: 1}
+    HEAD_JOINT0: {p: 5000,  d: 0.5, i: 0, i_clamp: 1}
+    HEAD_JOINT1: {p: 5000,  d: 0.25, i: 0, i_clamp: 1}
     LARM_JOINT0: {p: 10000,  d: 5, i: 0, i_clamp: 1}
     LARM_JOINT1: {p: 60000,  d: 2, i: 0, i_clamp: 1}
     LARM_JOINT2: {p: 40000,  d: 0.5, i: 0, i_clamp: 1}
@@ -12,9 +15,6 @@ gazebo_ros_control:
     RARM_JOINT3: {p: 1000,  d: 0.2, i: 0, i_clamp: 1}
     RARM_JOINT4: {p: 500,  d: 0.1, i: 0, i_clamp: 1}
     RARM_JOINT5: {p: 500,  d: 0.01, i: 0, i_clamp: 1}
-    CHEST_JOINT0: {p: 80000,  d: 5, i: 0, i_clamp: 1}
-    HEAD_JOINT0: {p: 5000,  d: 0.5, i: 0, i_clamp: 1}
-    HEAD_JOINT1: {p: 5000,  d: 0.25, i: 0, i_clamp: 1}
 
 joint_state_controller:
   type: joint_state_controller/JointStateController
@@ -23,6 +23,9 @@ joint_state_controller:
 streaming_controller:
   type: position_controllers/JointGroupPositionController
   joints:
+    - CHEST_JOINT0
+    - HEAD_JOINT0
+    - HEAD_JOINT1
     - LARM_JOINT0
     - LARM_JOINT1
     - LARM_JOINT2
@@ -35,9 +38,6 @@ streaming_controller:
     - RARM_JOINT3
     - RARM_JOINT4
     - RARM_JOINT5
-    - CHEST_JOINT0
-    - HEAD_JOINT0
-    - HEAD_JOINT1
   RobotDescriptionParameter: /robot_description
   PositionSafetyFactor: 1.0
   VelocitySafetyFactor: 1.0
