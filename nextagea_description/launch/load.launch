@@ -1,9 +1,0 @@
-<launch>
-  <arg name="simulation" default="false"/>
-  <arg name="bagfile_is_played" default="false"/>
-
-
-  <param name="robot_description"
-         command="$(find xacro)/xacro $(find nextagea_description)/urdf/nextagea.urdf.xacro"/>
- 
-</launch>
