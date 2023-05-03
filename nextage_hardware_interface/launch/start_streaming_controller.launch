@@ -1,0 +1,5 @@
+<launch>
+  <group ns="nextage">
+    <node name="start_streaming_controller" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="start streaming_controller"/>
+  </group>
+</launch>

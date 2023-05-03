@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<library path="lib/libnextage_hardware_interface">
+    <class name="nextage_hardware_interface/NextageAHardwareInterface" type="nextage_hardware_interface::NextageAHardwareInterface" base_class_type="hardware_interface::RobotHW">
+        <description>
+            ros_control interface for NextageA
+        </description>
+    </class>
+</library>

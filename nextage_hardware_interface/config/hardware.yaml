@@ -1,0 +1,61 @@
+robot_hardware:
+    - nextage_hw
+nextage_hw:
+    type: nextage_hardware_interface/NextageAHardwareInterface
+    loop_hz: 250
+    alpha: 0.05
+    joints:
+        - CHEST_JOINT0
+        - HEAD_JOINT0
+        - HEAD_JOINT1
+        - RARM_JOINT0
+        - RARM_JOINT1
+        - RARM_JOINT2
+        - RARM_JOINT3
+        - RARM_JOINT4
+        - RARM_JOINT5
+        - LARM_JOINT0
+        - LARM_JOINT1
+        - LARM_JOINT2
+        - LARM_JOINT3
+        - LARM_JOINT4
+        - LARM_JOINT5
+    inputs:
+        air_pressure: 14
+        chuck_close_right: 17
+        chuck_open_right: 18
+        hand_low_right: 19
+        hand_high_right: 20
+        hand_attachment_right: 21
+        # reserved_right: 22
+        chuck_closed_left: 23
+        chuck_open_left: 24
+        hand_low_left: 25
+        hand_high_left: 26
+        hand_attachment_left: 27
+        # reserved_left: 28
+        suction_1_right: 29
+        suction_1_left: 30
+        suction_2_right: 31
+        suction_2_left: 32
+    outputs:
+        hand_led_right: 9
+        hand_led_left: 10
+        tool_changer_right: 11
+        tool_changer_left: 12
+        chuck_close_right: 17
+        chuck_open_right: 18
+        chuck_close_left: 19
+        chuck_open_left: 20
+        suction_1_right: 21
+        breakage_1_right: 22
+        suction_1_left: 23
+        breakage_1_left: 24
+        suction_2_right: 25
+        breakage_2_right: 26
+        suction_2_left: 27
+        breakage_2_left: 28
+        gripper_open_right: 29
+        gripper_close_right: 30
+        gripper_open_left: 31
+        gripper_close_left: 32

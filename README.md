@@ -14,7 +14,7 @@ Currently a work in progress...
 ### nextage_moveit_config
 
 ### nextage_hardware_interface
-missing, currently in nextagea_control repo https://github.com/ipab-slmc/nextagea_control
+missing, currently in nextage_control repo https://github.com/ipab-slmc/nextage_control
 
 
 

@@ -1,0 +1,22 @@
+<launch>
+  <!-- <arg name="model" default="$(find nextage_description)/urdf/nextage.urdf.xacro"/> -->
+
+  <!-- <param name="robot_description" command="xacro $(arg model)" /> -->
+
+  <group ns="nextage">
+    <rosparam file="$(find nextage_hardware_interface)/config/controllers.yaml" command="load"/>
+    <rosparam file="$(find nextage_hardware_interface)/config/hardware.yaml" command="load"/>
+
+    <node name="NextageAHardwareInterface_node" pkg="nextage_hardware_interface" type="NextageAHardwareInterface_node" output="screen" required="true"/>
+
+    <!-- publish joint states and transformations -->
+    <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller" />
+    <!-- <node name="nextage_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" /> -->
+
+    <!-- load all controllers -->
+    <!-- start individual controllers via 'rqt_controller_manager'
+         or via the 'command line' commands (see "start_streaming_controller.launch"
+         and "start_trajectory_controllers.launch" for example)
+    -->
+  </group>
+</launch>

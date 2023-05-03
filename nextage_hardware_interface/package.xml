@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>nextage_hardware_interface</name>
+    <version>0.0.0</version>
+    <description>The nextage_hardware_interface package</description>
+    <maintainer email="victor.leve@kawadarobot.co.jp">nxopen</maintainer>
+
+    <!-- One license tag required, multiple allowed, one license per tag -->
+    <!-- Commonly used license strings: -->
+    <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+    <license>TODO</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <depend>combined_robot_hw</depend>
+    <depend>omniorb</depend>
+    <depend>joint_limits_interface</depend>
+    <depend>std_msgs</depend>
+    <depend>std_srvs</depend>
+    <depend>roscpp</depend>
+    <depend>controller_manager</depend>
+    <depend>hardware_interface</depend>
+    <depend>streaming_controllers</depend>
+    <depend>realtime_tools</depend>
+
+    <!-- The export tag contains other, unspecified, tags -->
+    <export>
+        <hardware_interface plugin="${prefix}/nextage_hw_plugin.xml"/>
+    </export>
+</package>

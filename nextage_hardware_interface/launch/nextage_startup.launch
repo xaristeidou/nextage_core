@@ -1,0 +1,3 @@
+<launch>
+    <node ns="nextage" name="nextage_startup_node" pkg="nextage_hardware_interface" type="nextage_startup" output="screen"/>
+</launch>
