@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nextagea_bringup</name>
+  <version>0.0.0</version>
+  <description>The nextagea_bringup package</description>
+  <maintainer email="v.ivan@ed.ac.uk">Vladimir Ivan</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>robot_upstart</depend>
+  <depend>nextagea_hardware_interface</depend>
+</package>
