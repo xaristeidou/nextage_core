@@ -6,41 +6,41 @@ import subprocess
 
 services = []
 
-# j = robot_upstart.Job(name="nextagea_roscore",
+# j = robot_upstart.Job(name="nextage_roscore",
 #     workspace_setup=os.environ.get('ROBOT_SETUP'),
 #     master_uri=os.environ.get('ROS_MASTER_URI'),
 #     systemd_after='NetworkManager.service')
-# services.append("nextagea_roscore")
+# services.append("nextage_roscore")
 # # Uninstall old scripts
 # j.uninstall()
 # # Stuff to launch on system startup.
 # j.symlink = True
-# j.add(package="nextagea_bringup", filename="launch/roscore.launch")
+# j.add(package="nextage_bringup", filename="launch/roscore.launch")
 # j.install()
 
-j = robot_upstart.Job(name="nextagea_safety",
+j = robot_upstart.Job(name="nextage_safety",
     workspace_setup=os.environ.get('ROBOT_SETUP'),
     master_uri=os.environ.get('ROS_MASTER_URI'),
     systemd_after='NetworkManager.service remote-fs.target syslog.target')
-services.append("nextagea_safety")
+services.append("nextage_safety")
 # Uninstall old scripts
 j.uninstall()
 # Stuff to launch on system startup.
 j.symlink = True
-j.add(package="nextagea_hardware_interface", filename="launch/safety_interface.launch")
+j.add(package="nextage_hardware_interface", filename="launch/safety_interface.launch")
 j.install()
 
-j = robot_upstart.Job(name="nextagea_startup",
+j = robot_upstart.Job(name="nextage_startup",
     workspace_setup=os.environ.get('ROBOT_SETUP'),
     master_uri=os.environ.get('ROS_MASTER_URI'),
-    systemd_after='nextagea_safety.service')
-services.append("nextagea_startup")
+    systemd_after='nextage_safety.service')
+services.append("nextage_startup")
 # Uninstall old scripts
 j.uninstall()
 # Stuff to launch on system startup.
 j.symlink = True
 j.roslaunch_wait = True
-j.add(package="nextagea_hardware_interface", filename="launch/nextagea_startup.launch")
+j.add(package="nextage_hardware_interface", filename="launch/nextage_startup.launch")
 j.install()
 
 def call(cmd):

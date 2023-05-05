@@ -1,3 +1,0 @@
-<launch>
-    <node name="nextagea_roscore_dummy" pkg="nextagea_bringup" type="roscore" output="screen" required="true"/>
-</launch>

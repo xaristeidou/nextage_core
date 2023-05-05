@@ -14,8 +14,8 @@ Currently a work in progress...
 ### nextage_moveit_config
 
 ### nextage_hardware_interface
-missing, currently in nextage_control repo https://github.com/ipab-slmc/nextage_control
 
+### nextage_bringup
 
 
 See the IPAB Wiki for more details, including guides and documentation for the Gazebo simulator: https://github.com/ipab-slmc/nextage_wiki/wiki

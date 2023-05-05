@@ -6,16 +6,16 @@ import subprocess
 
 services = []
 
-# j = robot_upstart.Job(name="nextagea_roscore",
+# j = robot_upstart.Job(name="nextage_roscore",
 #     workspace_setup=os.environ.get('ROBOT_SETUP'),
 #     master_uri=os.environ.get('ROS_MASTER_URI'),
 #     systemd_after='NetworkManager.service')
-# services.append("nextagea_roscore")
+# services.append("nextage_roscore")
 # # Uninstall old scripts
 # j.uninstall()
 # # Stuff to launch on system startup.
 # j.symlink = True
-# j.add(package="nextagea_bringup", filename="launch/roscore.launch")
+# j.add(package="nextage_bringup", filename="launch/roscore.launch")
 # j.install()
 
 j = robot_upstart.Job(name="roscore",
@@ -27,7 +27,7 @@ services.append("roscore")
 j.uninstall()
 # Stuff to launch on system startup.
 j.symlink = True
-j.add(package="nextagea_bringup", filename="launch/roscore.launch")
+j.add(package="nextage_bringup", filename="launch/roscore.launch")
 j.install()
 
 def call(cmd):
