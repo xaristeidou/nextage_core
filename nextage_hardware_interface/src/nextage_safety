@@ -75,27 +75,27 @@ class SafetyInterface:
 
     def estop_srv(self, req):
         if req.data:
-            self.ser.write('S1\n')
+            self.ser.write(b'S1\n')
             self.pub_nextage_estop.publish(True)
             self.pub_nextage_reset.publish(False)
         else:
-            self.ser.write('S0\n')
+            self.ser.write(b'S0\n')
             self.pub_nextage_estop.publish(False)
         return (True, '')
 
     def power_srv(self, req):
-        self.ser.write('P\n')
+        self.ser.write(b'P\n')
         return (True, '')
 
     def reset_srv(self, req):
-        self.ser.write('R\n')
+        self.ser.write(b'R\n')
         self.pub_nextage_reset.publish(True)
         return (True, '')
 
     def run(self):
         rate = rospy.Rate(2)
         while not rospy.is_shutdown():
-            self.ser.write('\n')
+            self.ser.write(b'\n')
             rate.sleep()
             self.update_diagnostics()
 
