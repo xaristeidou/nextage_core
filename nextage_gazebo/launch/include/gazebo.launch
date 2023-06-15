@@ -14,6 +14,7 @@
     <arg name="world_file" default="worlds/empty.world" />
     <arg name="extra_gazebo_args" default=""/>
     <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="urdf_path" default="$(find nextage_description)/urdf/nextage.urdf.xacro"/>
     <param name="/use_sim_time" value="true" />
 
     <!-- set command arguments -->
@@ -36,8 +37,7 @@
     </group>
 
     <!-- Load universal robotic description format (URDF) -->
-    <arg name="model" default="$(find nextage_description)/urdf/nextage.urdf.xacro" />
-    <param name="robot_description" command="xacro '$(arg model)'" />
+    <param name="robot_description" command="xacro '$(arg urdf_path)'" />
     <node ns="nextage" pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
           args="$(arg gzpose) -J LARM_JOINT2 -2.0 -J RARM_JOINT2 -2.0 -urdf -model nextage -param /robot_description -gazebo_namespace /nextage/gazebo" />
 
