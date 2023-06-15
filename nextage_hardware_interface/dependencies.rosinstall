@@ -1,2 +1,1 @@
 - git: {local-name: streaming_controllers, uri: 'git@github.com:ipab-slmc/streaming_controllers.git', version: main}
-- git: {local-name: nextage_exotica, uri: 'git@github.com:ipab-slmc/nextage_exotica.git', version: master}
