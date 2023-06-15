@@ -1,0 +1,3 @@
+<launch>
+    <node ns="nextage" name="nextage_safety_interface_node" pkg="nextage_hardware_interface" type="nextage_safety" output="screen" required="true"/>
+</launch>

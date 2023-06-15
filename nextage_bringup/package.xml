@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nextage_bringup</name>
+  <version>0.0.0</version>
+  <description>The nextage_bringup package</description>
+  <maintainer email="v.ivan@ed.ac.uk">Vladimir Ivan</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>robot_upstart</depend>
+  <depend>nextage_hardware_interface</depend>
+</package>

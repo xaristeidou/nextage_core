@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gazebo_gui" default="true"/>
+
+  <include file="$(find nextage_gazebo)/launch/nextage.launch">
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+    <arg name="paused" value="$(arg paused)"/>
+  </include>
+
+</launch>

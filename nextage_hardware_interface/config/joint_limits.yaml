@@ -1,0 +1,107 @@
+nextage:
+    joint_limits:
+        CHEST_JOINT0:
+            has_position_limit: true
+            min_position: -3.141593
+            max_position:  3.141593
+            has_velocity_limit: true
+            max_velocity: 2.513274
+            has_acceleration_limit: false
+        HEAD_JOINT0:
+            has_position_limit: true
+            min_position: -1.221730
+            max_position:  1.221730
+            has_velocity_limit: true
+            max_velocity: 6.684611
+            has_acceleration_limit: false
+        HEAD_JOINT1:
+            has_position_limit: true
+            min_position: -0.401426
+            max_position:  1.308997
+            has_velocity_limit: true
+            max_velocity: 6.684611
+            has_acceleration_limit: false
+        RARM_JOINT0:
+            has_position_limit: true
+            min_position: -1.570796
+            max_position:  1.570796
+            has_velocity_limit: true
+            max_velocity: 3.892084
+            has_acceleration_limit: false
+        RARM_JOINT1:
+            has_position_limit: true
+            min_position: -2.443461
+            max_position:  1.047198
+            has_velocity_limit: true
+            max_velocity: 2.426008
+            has_acceleration_limit: false
+        RARM_JOINT2:
+            has_position_limit: true
+            min_position: -1.221730
+            max_position:  1.570796
+            has_velocity_limit: true
+            max_velocity: 3.630285
+            has_acceleration_limit: false
+        RARM_JOINT3:
+            has_position_limit: true
+            min_position: -1.745329
+            max_position:  3.141593
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false
+        RARM_JOINT4:
+            has_position_limit: true
+            min_position: -2.094395
+            max_position:  0.977384
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false
+        RARM_JOINT5:
+            has_position_limit: true
+            min_position: -2.792527
+            max_position:  2.792527
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false
+        LARM_JOINT0:
+            has_position_limit: true
+            min_position: -1.570796
+            max_position:  1.570796
+            has_velocity_limit: true
+            max_velocity: 3.892084
+            has_acceleration_limit: false
+        LARM_JOINT1:
+            has_position_limit: true
+            min_position: -2.443461
+            max_position:  1.047198
+            has_velocity_limit: true
+            max_velocity: 2.426008
+            has_acceleration_limit: false
+        LARM_JOINT2:
+            has_position_limit: true
+            min_position: -1.221730
+            max_position:  1.570796
+            has_velocity_limit: true
+            max_velocity: 3.630285
+            has_acceleration_limit: false
+        LARM_JOINT3:
+            has_position_limit: true
+            min_position:  1.745329
+            max_position: -3.141593
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false
+        LARM_JOINT4:
+            has_position_limit: true
+            min_position: -2.094395
+            max_position:  0.977384
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false
+        LARM_JOINT5:
+            has_position_limit: true
+            min_position: -2.792527
+            max_position:  2.792527
+            has_velocity_limit: true
+            max_velocity: 6.352998
+            has_acceleration_limit: false

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nextage_core</name>
+  <version>0.0.0</version>
+  <description>The nextage_core package</description>
+  <maintainer email="russell.buchanan@ed.ac.uk">Russell Buchanan</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>nextage_bringup</depend>
+  <depend>nextage_description</depend>
+  <depend>nextage_hardware_interface</depend>
+</package>

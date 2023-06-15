@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+
+import rospy
+import time
+from std_srvs.srv import Trigger
+
+
+rospy.init_node("nexagea_startup_node")
+rospy.logerr("Initialised nextage_startup_node")
+
+# wait for nextage_safety_interface to finish
+time.sleep(5)
+
+# Power robot
+rospy.wait_for_service('/nextage/power')
+power = rospy.ServiceProxy('/nextage/power', Trigger) # client
+try:
+    power()
+    rospy.logerr("Robot has powered on!")
+except rospy.ServiceException as e:
+    rospy.logerr("Service did not process request: %s"%str(e))
+    exit(3)
+
+rospy.logerr("Waiting 80s before reset...")
+time.sleep(80)
+
+# Reset robot
+rospy.wait_for_service('/nextage/reset')
+reset = rospy.ServiceProxy('/nextage/reset', Trigger)
+try:
+    reset()
+    rospy.logerr("Robot has reset!")
+except rospy.ServiceException as e:
+    rospy.logerr("Service did not process request: %s"%str(e))
+    exit(2)

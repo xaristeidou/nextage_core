@@ -1,0 +1,139 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 250
+
+streaming_controller:
+  type: streaming_controllers/JointGroupPositionController
+  joints:
+    - CHEST_JOINT0
+    - HEAD_JOINT0
+    - HEAD_JOINT1
+    - LARM_JOINT0
+    - LARM_JOINT1
+    - LARM_JOINT2
+    - LARM_JOINT3
+    - LARM_JOINT4
+    - LARM_JOINT5
+    - RARM_JOINT0
+    - RARM_JOINT1
+    - RARM_JOINT2
+    - RARM_JOINT3
+    - RARM_JOINT4
+    - RARM_JOINT5
+  RobotDescriptionParameter: /robot_description
+  PositionSafetyFactor: 1.0
+  VelocitySafetyFactor: 1.0
+  AccelerationSafetyFactor: 0.3
+  Kp: 200.0
+  Kd: 10.0
+  # ExoticaValidityChecker:
+  #  config: "{nextage_exotica}/config/nextage_collision.xml"
+
+
+trajectory_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - CHEST_JOINT0
+    - HEAD_JOINT0
+    - HEAD_JOINT1
+    - LARM_JOINT0
+    - LARM_JOINT1
+    - LARM_JOINT2
+    - LARM_JOINT3
+    - LARM_JOINT4
+    - LARM_JOINT5
+    - RARM_JOINT0
+    - RARM_JOINT1
+    - RARM_JOINT2
+    - RARM_JOINT3
+    - RARM_JOINT4
+    - RARM_JOINT5
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.1
+
+  stop_trajectory_duration: 0.05
+  state_publish_rate:  100
+  action_monitor_rate: 10
+
+larm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - LARM_JOINT0
+    - LARM_JOINT1
+    - LARM_JOINT2
+    - LARM_JOINT3
+    - LARM_JOINT4
+    - LARM_JOINT5
+  constraints:
+      goal_time: 0.0
+      stopped_velocity_tolerance: 0.01
+
+  stop_trajectory_duration: 0.0
+  state_publish_rate:  250
+  action_monitor_rate: 250
+
+rarm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - RARM_JOINT0
+    - RARM_JOINT1
+    - RARM_JOINT2
+    - RARM_JOINT3
+    - RARM_JOINT4
+    - RARM_JOINT5
+  constraints:
+      goal_time: 0.0
+      stopped_velocity_tolerance: 0.01
+
+  stop_trajectory_duration: 0.0
+  state_publish_rate:  250
+  action_monitor_rate: 250
+
+botharms_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - LARM_JOINT0
+    - LARM_JOINT1
+    - LARM_JOINT2
+    - LARM_JOINT3
+    - LARM_JOINT4
+    - LARM_JOINT5
+    - RARM_JOINT0
+    - RARM_JOINT1
+    - RARM_JOINT2
+    - RARM_JOINT3
+    - RARM_JOINT4
+    - RARM_JOINT5
+  constraints:
+      goal_time: 0.0
+      stopped_velocity_tolerance: 0.01
+
+  stop_trajectory_duration: 0.0
+  state_publish_rate:  250
+  action_monitor_rate: 250
+
+head_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - HEAD_JOINT0
+    - HEAD_JOINT1
+  constraints:
+      goal_time: 0.0
+      stopped_velocity_tolerance: 0.01
+
+  stop_trajectory_duration: 0.0
+  state_publish_rate:  250
+  action_monitor_rate: 250
+
+torso_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - CHEST_JOINT0
+  constraints:
+      goal_time: 0.0
+      stopped_velocity_tolerance: 0.01
+
+  stop_trajectory_duration: 0.0
+  state_publish_rate:  250
+  action_monitor_rate: 250

@@ -1,0 +1,5 @@
+<launch>
+  <group ns="nextage">
+    <node name="start_trajectory_controllers" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="start torso_controller larm_controller rarm_controller head_controller"/>
+  </group>
+</launch>

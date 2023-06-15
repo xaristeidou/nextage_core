@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import robot_upstart
+import os
+import subprocess
+
+services = []
+
+# j = robot_upstart.Job(name="nextage_roscore",
+#     workspace_setup=os.environ.get('ROBOT_SETUP'),
+#     master_uri=os.environ.get('ROS_MASTER_URI'),
+#     systemd_after='NetworkManager.service')
+# services.append("nextage_roscore")
+# # Uninstall old scripts
+# j.uninstall()
+# # Stuff to launch on system startup.
+# j.symlink = True
+# j.add(package="nextage_bringup", filename="launch/roscore.launch")
+# j.install()
+
+j = robot_upstart.Job(name="nextage_safety",
+    workspace_setup=os.environ.get('ROBOT_SETUP'),
+    master_uri=os.environ.get('ROS_MASTER_URI'),
+    systemd_after='NetworkManager.service remote-fs.target syslog.target')
+services.append("nextage_safety")
+# Uninstall old scripts
+j.uninstall()
+# Stuff to launch on system startup.
+j.symlink = True
+j.add(package="nextage_hardware_interface", filename="launch/safety_interface.launch")
+j.install()
+
+j = robot_upstart.Job(name="nextage_startup",
+    workspace_setup=os.environ.get('ROBOT_SETUP'),
+    master_uri=os.environ.get('ROS_MASTER_URI'),
+    systemd_after='nextage_safety.service')
+services.append("nextage_startup")
+# Uninstall old scripts
+j.uninstall()
+# Stuff to launch on system startup.
+j.symlink = True
+j.roslaunch_wait = True
+j.add(package="nextage_hardware_interface", filename="launch/nextage_startup.launch")
+j.install()
+
+def call(cmd):
+    p = subprocess.Popen(cmd)
+    p.communicate()
+    if p.returncode == 0:
+        return True
+    else:
+        return False
+
+print('Restarting services ...')
+call(['sudo', 'systemctl', 'daemon-reload'])
+cmd = 'sudo systemctl daemon-reload'
+for name in services:
+    print ('  Starting ' + name + ' ...')
+    if not call(['sudo', 'systemctl', 'start', name]):
+        print('  Cannot start ' + name + '!')
+        exit(1)
+    call(['sudo', 'service', name, 'restart'])
+
+print('Operation successful')

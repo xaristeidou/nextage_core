@@ -1,5 +1,21 @@
-# Edinburgh Nextage Resources
+# Nextage Core
 
-This repo contains URDFs, launch files and common resources for the Nextage platform. 
+This repo contains all the basic code to operate a Nextage robot.
 
-See the IPAB Wiki for more details, including guides and documentation for the Gazebo simulator: https://github.com/ipab-slmc/nextagea_wiki/wiki
+Currently a work in progress...
+
+
+## Packages (Some to be added still)
+
+### nextage_description
+
+### nextage_gazebo
+
+### nextage_moveit_config
+
+### nextage_hardware_interface
+
+### nextage_bringup
+
+
+See the IPAB Wiki for more details, including guides and documentation for the Gazebo simulator: https://github.com/ipab-slmc/nextage_wiki/wiki

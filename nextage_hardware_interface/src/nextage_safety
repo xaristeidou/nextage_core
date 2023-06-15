@@ -1,0 +1,143 @@
+#!/usr/bin/env python
+
+# Copyright (c) 2021, University of Edinburgh
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+#  * Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#  * Neither the name of  nor the names of its contributors may be used to
+#    endorse or promote products derived from this software without specific
+#    prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+from cgitb import reset
+import rospy
+import serial
+from std_srvs.srv import Trigger, SetBool
+from std_msgs.msg import Bool
+from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
+
+
+class SafetyInterface:
+
+    def __init__(self):
+        port = rospy.get_param('~Port', '/dev/nextage_safety_device')
+        rate = rospy.get_param('~BaudRate', 9600)
+        try:
+            self.ser = serial.Serial()
+            self.ser.port = port
+            self.ser.baudrate = rate
+            self.ser.timeout = 0.2
+            self.ser.open()
+            self.ser.flushInput()
+        except serial.SerialTimeoutException as e:
+            rospy.logerr("Timeout exception: " + e.message)
+            exit(-1)
+        except serial.SerialException as e:
+            print(e)
+            exit(-1)
+        except Exception as e:
+            rospy.logerr("Could not open serial port: " + port)
+            rospy.logerr(e)
+            exit(-1)
+
+        self.estop = False
+        self.reset = True
+
+        rospy.Service('estop', SetBool, self.estop_srv)
+        rospy.Service('power', Trigger, self.power_srv)
+        rospy.Service('reset', Trigger, self.reset_srv)
+        self.pub_nextage_estop = rospy.Publisher('/nextage/estop', Bool, queue_size=10)
+        self.pub_nextage_reset = rospy.Publisher('/nextage/reset', Bool, queue_size=10)
+        self.pub_nextage_estop.publish(False)
+        self.pub_nextage_reset.publish(True)
+        self.pub_diagnostics = rospy.Publisher('/diagnostics', DiagnosticArray, queue_size=10)
+        self.sub_estop = rospy.Subscriber("/nextage/estop", Bool, self.estop_data_callback)
+        self.sub_reset = rospy.Subscriber("/nextage/reset", Bool, self.reset_data_callback)
+        self.set_up_diagnostics()
+
+    def estop_srv(self, req):
+        if req.data:
+            self.ser.write(b'S1\n')
+            self.pub_nextage_estop.publish(True)
+            self.pub_nextage_reset.publish(False)
+        else:
+            self.ser.write(b'S0\n')
+            self.pub_nextage_estop.publish(False)
+        return (True, '')
+
+    def power_srv(self, req):
+        self.ser.write(b'P\n')
+        return (True, '')
+
+    def reset_srv(self, req):
+        self.ser.write(b'R\n')
+        self.pub_nextage_reset.publish(True)
+        return (True, '')
+
+    def run(self):
+        rate = rospy.Rate(2)
+        while not rospy.is_shutdown():
+            self.ser.write(b'\n')
+            rate.sleep()
+            self.update_diagnostics()
+
+    def set_up_diagnostics(self):
+        self.msg = DiagnosticArray()
+        self.stat = DiagnosticStatus()
+        self.stat.name = "NextageA Safety Interface"
+        self.dia_estop = KeyValue()
+        self.dia_estop.key = "estop"
+        self.dia_reset = KeyValue()
+        self.dia_reset.key = "reset"
+
+    def update_diagnostics(self):
+        if self.estop:
+            self.stat.level = 2
+            self.stat.message = "NextageA e-stopped."
+        elif not self.reset:
+            self.stat.level = 1
+            self.stat.message = "NextageA awaiting reset."
+        else:
+            self.stat.level = 0
+            self.stat.message = "Everything seems to be ok."
+        self.dia_estop.value = str(self.estop)
+        self.dia_reset.value = str(self.reset)
+        self.stat.values.append(self.dia_estop)
+        self.stat.values.append(self.dia_reset)
+        self.msg.status.append(self.stat)
+        self.msg.header.stamp = rospy.get_rostime()
+        self.pub_diagnostics.publish(self.msg)
+        self.stat.values.remove(self.dia_estop)
+        self.stat.values.remove(self.dia_reset)
+        self.msg.status.remove(self.stat)
+
+    def estop_data_callback(self, data):
+        self.estop = data.data
+
+    def reset_data_callback(self, data):
+        self.reset = data.data
+
+if __name__ == '__main__':
+    rospy.init_node("nextage_safety_inteface", anonymous=False)
+    si = SafetyInterface()
+    rospy.loginfo('Running Nextage safety interface')
+    si.run()
+

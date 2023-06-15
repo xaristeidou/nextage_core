@@ -1,6 +1,0 @@
-<launch>
-
-  <param name="robot_description"
-         command="$(find xacro)/xacro $(find nextagea_description)/urdf/nextagea.urdf.xacro"/>
- 
-</launch>
