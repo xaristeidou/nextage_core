@@ -2,10 +2,12 @@
 <launch>
   <arg name="paused" default="false"/>
   <arg name="gazebo_gui" default="true"/>
+  <arg name="urdf_path" default="$(find nextage_description)/urdf/nextage.urdf.xacro"/>
 
   <include file="$(find nextage_gazebo)/launch/nextage.launch">
     <arg name="gui" value="$(arg gazebo_gui)"/>
     <arg name="paused" value="$(arg paused)"/>
+    <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include>
 
 </launch>
