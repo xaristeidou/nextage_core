@@ -1,0 +1,3 @@
+[submodule "streaming_controllers"]
+	path = streaming_controllers
+	url = https://github.com/ipab-slmc/streaming_controllers
