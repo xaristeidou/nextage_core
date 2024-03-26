@@ -13,7 +13,7 @@
         <chain base_link="WAIST" tip_link="CHEST_JOINT0_Link"/>
     </group>
     <group name="head">
-        <chain base_link="CHEST_JOINT0_Link" tip_link="CAMERA_HEAD_R_Link"/>
+        <chain base_link="CHEST_JOINT0_Link" tip_link="zed2_temp_right_link"/>
     </group>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="CHEST_JOINT0_Link" link2="HEAD_JOINT0_Link" reason="Adjacent"/>
@@ -21,6 +21,7 @@
     <disable_collisions link1="CHEST_JOINT0_Link" link2="RARM_JOINT0_Link" reason="Adjacent"/>
     <disable_collisions link1="CHEST_JOINT0_Link" link2="WAIST" reason="Adjacent"/>
     <disable_collisions link1="CHEST_JOINT0_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="CHEST_JOINT0_Link" link2="zed2_camera_center" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT0_Link" link2="HEAD_JOINT1_Link" reason="Adjacent"/>
     <disable_collisions link1="HEAD_JOINT0_Link" link2="LARM_JOINT0_Link" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT0_Link" link2="LARM_JOINT1_Link" reason="Never"/>
@@ -29,16 +30,20 @@
     <disable_collisions link1="HEAD_JOINT0_Link" link2="RARM_JOINT2_Link" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT0_Link" link2="WAIST" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT0_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="HEAD_JOINT0_Link" link2="zed2_camera_center" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT1_Link" link2="LARM_JOINT0_Link" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT1_Link" link2="RARM_JOINT0_Link" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT1_Link" link2="WAIST" reason="Never"/>
     <disable_collisions link1="HEAD_JOINT1_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="HEAD_JOINT1_Link" link2="zed2_camera_center" reason="Adjacent"/>
     <disable_collisions link1="LARM_JOINT0_Link" link2="LARM_JOINT1_Link" reason="Adjacent"/>
     <disable_collisions link1="LARM_JOINT0_Link" link2="RARM_JOINT0_Link" reason="Never"/>
     <disable_collisions link1="LARM_JOINT0_Link" link2="WAIST" reason="Never"/>
     <disable_collisions link1="LARM_JOINT0_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="LARM_JOINT0_Link" link2="zed2_camera_center" reason="Never"/>
     <disable_collisions link1="LARM_JOINT1_Link" link2="LARM_JOINT2_Link" reason="Adjacent"/>
     <disable_collisions link1="LARM_JOINT1_Link" link2="LARM_JOINT3_Link" reason="Never"/>
+    <disable_collisions link1="LARM_JOINT1_Link" link2="LARM_JOINT4_Link" reason="Never"/>
     <disable_collisions link1="LARM_JOINT1_Link" link2="nextage_base" reason="Never"/>
     <disable_collisions link1="LARM_JOINT2_Link" link2="LARM_JOINT3_Link" reason="Adjacent"/>
     <disable_collisions link1="LARM_JOINT2_Link" link2="LARM_JOINT4_Link" reason="Never"/>
@@ -51,9 +56,11 @@
     <disable_collisions link1="RARM_JOINT0_Link" link2="RARM_JOINT1_Link" reason="Adjacent"/>
     <disable_collisions link1="RARM_JOINT0_Link" link2="WAIST" reason="Never"/>
     <disable_collisions link1="RARM_JOINT0_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="RARM_JOINT0_Link" link2="zed2_camera_center" reason="Never"/>
     <disable_collisions link1="RARM_JOINT1_Link" link2="RARM_JOINT2_Link" reason="Adjacent"/>
     <disable_collisions link1="RARM_JOINT1_Link" link2="RARM_JOINT3_Link" reason="Never"/>
     <disable_collisions link1="RARM_JOINT1_Link" link2="nextage_base" reason="Never"/>
+    <disable_collisions link1="RARM_JOINT1_Link" link2="zed2_camera_center" reason="Never"/>
     <disable_collisions link1="RARM_JOINT2_Link" link2="RARM_JOINT3_Link" reason="Adjacent"/>
     <disable_collisions link1="RARM_JOINT2_Link" link2="RARM_JOINT4_Link" reason="Never"/>
     <disable_collisions link1="RARM_JOINT2_Link" link2="RARM_JOINT5_Link" reason="Never"/>
@@ -63,4 +70,6 @@
     <disable_collisions link1="RARM_JOINT4_Link" link2="RARM_camera_Link" reason="Never"/>
     <disable_collisions link1="RARM_JOINT5_Link" link2="RARM_camera_Link" reason="Adjacent"/>
     <disable_collisions link1="WAIST" link2="nextage_base" reason="Adjacent"/>
+    <disable_collisions link1="WAIST" link2="zed2_camera_center" reason="Never"/>
+    <disable_collisions link1="nextage_base" link2="zed2_camera_center" reason="Never"/>
 </robot>
