@@ -1,9 +1,6 @@
 [submodule "streaming_controllers"]
 	path = streaming_controllers
 	url = https://github.com/ipab-slmc/streaming_controllers
-[submodule "zed-ros-wrapper"]
-	path = zed-ros-wrapper
-	url = https://github.com/stereolabs/zed-ros-wrapper
 [submodule "realsense-ros"]
 	path = realsense-ros
 	url = https://github.com/IntelRealSense/realsense-ros
