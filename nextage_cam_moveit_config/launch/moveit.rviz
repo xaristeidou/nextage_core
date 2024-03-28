@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /MotionPlanning1
         - /MotionPlanning1/Planned Path1
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 308
   - Class: rviz/Help
@@ -231,6 +232,10 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          zed_position_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Loop Animation: false
         Robot Alpha: 0.10000000149011612
         Robot Color: 150; 50; 150
@@ -437,11 +442,152 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          zed_position_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 0.5
+    - Class: rviz/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        CAMERA_HAND_L_Link:
+          Value: false
+        CAMERA_HAND_R_Link:
+          Value: false
+        CAMERA_HEAD_L_Link:
+          Value: false
+        CAMERA_HEAD_R_Link:
+          Value: false
+        CHEST_JOINT0_Link:
+          Value: false
+        HEAD_JOINT0_Link:
+          Value: false
+        HEAD_JOINT1_Link:
+          Value: false
+        LARM_JOINT0_Link:
+          Value: false
+        LARM_JOINT1_Link:
+          Value: false
+        LARM_JOINT2_Link:
+          Value: false
+        LARM_JOINT3_Link:
+          Value: false
+        LARM_JOINT4_Link:
+          Value: false
+        LARM_JOINT5_Link:
+          Value: false
+        LARM_camera_Link:
+          Value: false
+        RARM_JOINT0_Link:
+          Value: false
+        RARM_JOINT1_Link:
+          Value: false
+        RARM_JOINT2_Link:
+          Value: false
+        RARM_JOINT3_Link:
+          Value: false
+        RARM_JOINT4_Link:
+          Value: false
+        RARM_JOINT5_Link:
+          Value: false
+        RARM_camera_Link:
+          Value: false
+        WAIST:
+          Value: false
+        base_link:
+          Value: false
+        nextage_base:
+          Value: false
+        zed2_baro_link:
+          Value: false
+        zed2_base_link:
+          Value: false
+        zed2_camera_center:
+          Value: false
+        zed2_imu_link:
+          Value: false
+        zed2_left_camera_frame:
+          Value: false
+        zed2_left_camera_optical_frame:
+          Value: true
+        zed2_mag_link:
+          Value: false
+        zed2_right_camera_frame:
+          Value: false
+        zed2_right_camera_optical_frame:
+          Value: false
+        zed2_temp_left_link:
+          Value: false
+        zed2_temp_right_link:
+          Value: false
+        zed_position_link:
+          Value: false
+      Marker Alpha: 1
+      Marker Scale: 0.6000000238418579
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base_link:
+          nextage_base:
+            WAIST:
+              CHEST_JOINT0_Link:
+                HEAD_JOINT0_Link:
+                  HEAD_JOINT1_Link:
+                    CAMERA_HEAD_L_Link:
+                      {}
+                    CAMERA_HEAD_R_Link:
+                      {}
+                    zed_position_link:
+                      zed2_base_link:
+                        zed2_camera_center:
+                          zed2_baro_link:
+                            {}
+                          zed2_left_camera_frame:
+                            zed2_imu_link:
+                              {}
+                            zed2_left_camera_optical_frame:
+                              {}
+                            zed2_temp_left_link:
+                              {}
+                          zed2_mag_link:
+                            {}
+                          zed2_right_camera_frame:
+                            zed2_right_camera_optical_frame:
+                              {}
+                            zed2_temp_right_link:
+                              {}
+                LARM_JOINT0_Link:
+                  LARM_JOINT1_Link:
+                    LARM_JOINT2_Link:
+                      LARM_JOINT3_Link:
+                        LARM_JOINT4_Link:
+                          LARM_JOINT5_Link:
+                            CAMERA_HAND_L_Link:
+                              {}
+                            LARM_camera_Link:
+                              {}
+                RARM_JOINT0_Link:
+                  RARM_JOINT1_Link:
+                    RARM_JOINT2_Link:
+                      RARM_JOINT3_Link:
+                        RARM_JOINT4_Link:
+                          RARM_JOINT5_Link:
+                            CAMERA_HAND_R_Link:
+                              {}
+                            RARM_camera_Link:
+                              {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -458,7 +604,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.240000009536743
+      Distance: 1.7346559762954712
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -466,17 +612,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.75
       Focal Point:
-        X: 0.012125927954912186
-        Y: 0.19207827746868134
-        Z: 0.14559006690979004
+        X: 0.2642143964767456
+        Y: 0.1868959218263626
+        Z: 0.4127112030982971
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5647974014282227
+      Pitch: 0.6247973442077637
       Target Frame: base_link
-      Yaw: 3.1167819499969482
+      Yaw: 2.6417815685272217
     Saved: ~
 Window Geometry:
   Displays:
