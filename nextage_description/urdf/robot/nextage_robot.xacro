@@ -7,12 +7,12 @@
   <xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
     <xacro:arg name="camera_name"   default="zed2" />
     <xacro:arg name="camera_model"  default="zed2" />
-    <xacro:arg name="base_frame"    default="HEAD_JOINT1_Link" />
-    <xacro:arg name="cam_pos_x"     default="0.04" />
+    <xacro:arg name="base_frame"    default="zed_position_link" />
+    <xacro:arg name="cam_pos_x"     default="0.0" />
     <xacro:arg name="cam_pos_y"     default="0.0" />
-    <xacro:arg name="cam_pos_z"     default="0.148" />
+    <xacro:arg name="cam_pos_z"     default="0.0" />
     <xacro:arg name="cam_roll"      default="0.0" />
-    <xacro:arg name="cam_pitch"     default="0.4" />
+    <xacro:arg name="cam_pitch"     default="0.0" />
     <xacro:arg name="cam_yaw"       default="0.0" />
     <xacro:arg name="gnss_frame"    default="" />
 
@@ -162,6 +162,8 @@
         <xacro:nxa_box_inertia_def x="0.27" y="0.22" z="0.115" mass="0.4"/>
       </inertial>
     </link>
+
+    <link name="zed_position_link"/>
 
     <xacro:gazebo_nx_link name="LARM_JOINT0_Link" color="Black" />
     <link name="LARM_JOINT0_Link">
@@ -540,6 +542,11 @@
       <limit lower="-0.401425" upper="1.308997" effort="100" velocity="6.684611"/>
     </joint>
 
+    <joint name="zed_mount" type="fixed">
+      <parent link="HEAD_JOINT1_Link"/>
+      <child link="zed_position_link"/>
+      <origin xyz="0.04 0 0.148" rpy="0 0.4 0"/>
+    </joint>
 
     <xacro:transmission_nx_joint name="LARM_JOINT0" />
     <joint name="LARM_JOINT0" type="revolute">
