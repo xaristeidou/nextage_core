@@ -4,6 +4,30 @@
   <xacro:include filename="$(find nextage_description)/urdf/general/common.xacro" />
   <xacro:include filename="$(find nextage_description)/urdf/general/materials.xacro" />
 
+  <!-- <xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
+    <xacro:arg name="camera_name"   default="zed2" />
+    <xacro:arg name="camera_model"  default="zed2" />
+    <xacro:arg name="base_frame"    default="zed_position_link" />
+    <xacro:arg name="cam_pos_x"     default="0.0" />
+    <xacro:arg name="cam_pos_y"     default="0.0" />
+    <xacro:arg name="cam_pos_z"     default="0.0" />
+    <xacro:arg name="cam_roll"      default="0.0" />
+    <xacro:arg name="cam_pitch"     default="0.0" />
+    <xacro:arg name="cam_yaw"       default="0.0" />
+    <xacro:arg name="gnss_frame"    default="" />
+
+  <xacro:zed_camera name="$(arg camera_name)" model="$(arg camera_model)" parent="$(arg base_frame)">
+    <origin 
+      xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)"
+      rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)"
+    />
+  </xacro:zed_camera> -->
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+  <xacro:sensor_d435 parent="HEAD_JOINT1_Link" name="camera">
+    <origin xyz="0.04 0.0 0.148" rpy="0.0 0.4 0.0"/>
+  </xacro:sensor_d435>
+
   <xacro:macro name="nextage_robot" params="namespace:=/nextage/ nextage_gazebo_ros_control:=true">
 
     <!-- NOTE: The poses of headmount and hand cameras are NOT precisely adjusted to
@@ -143,6 +167,8 @@
         <xacro:nxa_box_inertia_def x="0.27" y="0.22" z="0.115" mass="0.4"/>
       </inertial>
     </link>
+
+    <link name="zed_position_link"/>
 
     <xacro:gazebo_nx_link name="LARM_JOINT0_Link" color="Black" />
     <link name="LARM_JOINT0_Link">
@@ -521,6 +547,11 @@
       <limit lower="-0.401425" upper="1.308997" effort="100" velocity="6.684611"/>
     </joint>
 
+    <joint name="zed_mount" type="fixed">
+      <parent link="HEAD_JOINT1_Link"/>
+      <child link="zed_position_link"/>
+      <origin xyz="0.04 0 0.148" rpy="0 0.4 0"/>
+    </joint>
 
     <xacro:transmission_nx_joint name="LARM_JOINT0" />
     <joint name="LARM_JOINT0" type="revolute">

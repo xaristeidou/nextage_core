@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: nextage_description
+    relative_path: urdf/nextage.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/nextage.srdf
+  CONFIG:
+    author_name: test test
+    author_email: test@test.test
+    generated_timestamp: 1711464771
