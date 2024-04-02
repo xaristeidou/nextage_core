@@ -4,7 +4,7 @@
   <xacro:include filename="$(find nextage_description)/urdf/general/common.xacro" />
   <xacro:include filename="$(find nextage_description)/urdf/general/materials.xacro" />
 
-  <xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
+  <!-- <xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
     <xacro:arg name="camera_name"   default="zed2" />
     <xacro:arg name="camera_model"  default="zed2" />
     <xacro:arg name="base_frame"    default="zed_position_link" />
@@ -21,7 +21,12 @@
       xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)"
       rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)"
     />
-  </xacro:zed_camera>
+  </xacro:zed_camera> -->
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+  <xacro:sensor_d435 parent="HEAD_JOINT1_Link" name="camera">
+    <origin xyz="0.04 0.0 0.148" rpy="0.0 0.4 0.0"/>
+  </xacro:sensor_d435>
 
   <xacro:macro name="nextage_robot" params="namespace:=/nextage/ nextage_gazebo_ros_control:=true">
 
