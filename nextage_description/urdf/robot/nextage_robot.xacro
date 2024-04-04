@@ -25,7 +25,7 @@
 
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
   <xacro:sensor_d435 parent="HEAD_JOINT1_Link" name="camera">
-    <origin xyz="0.04 0.0 0.148" rpy="0.0 0.4 0.0"/>
+    <origin xyz="0.028 0.0 0.152" rpy="0.0 0.38 0.0"/>
   </xacro:sensor_d435>
 
   <xacro:macro name="nextage_robot" params="namespace:=/nextage/ nextage_gazebo_ros_control:=true">
