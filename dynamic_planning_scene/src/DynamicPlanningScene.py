@@ -44,22 +44,22 @@ class DynamicPlanningScene:
             self.planning_scene_interface.add_mesh("small_hob", small_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
             self.setColor(name="small_hob",r=0.5,g=0.5,b=0.5,a=0.7)
             self.sendColors()
-        if self.check_transforms('medium1_hob_frame'):
+        if self.check_transforms('medium_hob_frame'):
             medium1_hob = PoseStamped()
-            medium1_hob.header.frame_id = "medium1_hob_frame"
+            medium1_hob.header.frame_id = "medium_hob_frame"
             medium1_hob.pose.orientation.x, medium1_hob.pose.orientation.y, medium1_hob.pose.orientation.z, medium1_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
             medium1_hob.pose.position.x, medium1_hob.pose.position.y, medium1_hob.pose.position.z = 0.0,0.0,.0
-            self.planning_scene_interface.add_mesh("medium1_hob", medium1_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
-            self.setColor(name="medium1_hob",r=0.5,g=0.5,b=0.5,a=0.7)
+            self.planning_scene_interface.add_mesh("medium_hob", medium1_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
+            self.setColor(name="medium_hob",r=0.5,g=0.5,b=0.5,a=0.7)
             self.sendColors()
-        if self.check_transforms('medium2_hob_frame'):
-            medium2_hob = PoseStamped()
-            medium2_hob.header.frame_id = "medium2_hob_frame"
-            medium2_hob.pose.orientation.x, medium2_hob.pose.orientation.y, medium2_hob.pose.orientation.z, medium2_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
-            medium2_hob.pose.position.x, medium2_hob.pose.position.y, medium2_hob.pose.position.z = .0,.0,.0
-            self.planning_scene_interface.add_mesh("medium2_hob", medium2_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
-            self.setColor(name="medium2_hob",r=0.5,g=0.5,b=0.5,a=0.7)
-            self.sendColors()
+        # if self.check_transforms('medium2_hob_frame'):
+        #     medium2_hob = PoseStamped()
+        #     medium2_hob.header.frame_id = "medium2_hob_frame"
+        #     medium2_hob.pose.orientation.x, medium2_hob.pose.orientation.y, medium2_hob.pose.orientation.z, medium2_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
+        #     medium2_hob.pose.position.x, medium2_hob.pose.position.y, medium2_hob.pose.position.z = .0,.0,.0
+        #     self.planning_scene_interface.add_mesh("medium2_hob", medium2_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
+        #     self.setColor(name="medium2_hob",r=0.5,g=0.5,b=0.5,a=0.7)
+        #     self.sendColors()
         if self.check_transforms('big_hob_frame'):
             big_hob = PoseStamped()
             big_hob.header.frame_id = "big_hob_frame"
