@@ -26,7 +26,7 @@ class DynamicPlanningScene:
 
     def check_transforms(self,tf_frame_name):
         try:
-            _ = self.tf_buffer.lookup_transform("base_link", tf_frame_name, rospy.Time(0))
+            _ = self.tf_buffer.lookup_transform("world", tf_frame_name, rospy.Time(0))
             rospy.loginfo("Frame {} is being published.".format(tf_frame_name))
             return True
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):

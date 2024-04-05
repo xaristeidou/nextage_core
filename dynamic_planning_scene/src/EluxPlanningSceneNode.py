@@ -25,7 +25,7 @@ class EluxPlanningScene:
         static_transformStamped = TransformStamped()
 
         static_transformStamped.header.stamp = rospy.Time.now()
-        static_transformStamped.header.frame_id = "base_link"
+        static_transformStamped.header.frame_id = "world"
         static_transformStamped.child_frame_id = "gamout"
         static_transformStamped.transform.translation.x = -0.21
         static_transformStamped.transform.translation.y = 0.17
@@ -39,7 +39,7 @@ class EluxPlanningScene:
         print('Initialize Planning Scene')
                 
         elux_pose = PoseStamped()
-        elux_pose.header.frame_id = "base_link"
+        elux_pose.header.frame_id = "world"
         elux_pose.pose.orientation.x, elux_pose.pose.orientation.y, elux_pose.pose.orientation.z, elux_pose.pose.orientation.w = 0.0, 0.0, -0.7068252, 0.7073883
         elux_pose.pose.position.x, elux_pose.pose.position.y, elux_pose.pose.position.z = 0.20, 0.30, -0.85
         self.planning_scene_interface.add_mesh("elux_scene", elux_pose, os.path.join(local_mesh_repo_dir,'meshes/elux_tecnalia_scene.stl'))
