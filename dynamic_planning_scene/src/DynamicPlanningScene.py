@@ -42,7 +42,7 @@ class DynamicPlanningScene:
             small_hob.pose.orientation.x, small_hob.pose.orientation.y, small_hob.pose.orientation.z, small_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
             small_hob.pose.position.x, small_hob.pose.position.y, small_hob.pose.position.z = 0.0,0.0,0.0 
             self.planning_scene_interface.add_mesh("small_hob", small_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
-            self.setColor(name="small_hob",r=0.5,g=0.5,b=0.5,a=0.7)
+            self.setColor(name="small_hob",r=0.5,g=0.5,b=0.5,a=0.85)
             self.sendColors()
         if self.check_transforms('medium_hob_frame'):
             medium1_hob = PoseStamped()
@@ -50,7 +50,7 @@ class DynamicPlanningScene:
             medium1_hob.pose.orientation.x, medium1_hob.pose.orientation.y, medium1_hob.pose.orientation.z, medium1_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
             medium1_hob.pose.position.x, medium1_hob.pose.position.y, medium1_hob.pose.position.z = 0.0,0.0,.0
             self.planning_scene_interface.add_mesh("medium_hob", medium1_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
-            self.setColor(name="medium_hob",r=0.5,g=0.5,b=0.5,a=0.7)
+            self.setColor(name="medium_hob",r=0.5,g=0.5,b=0.5,a=0.85)
             self.sendColors()
         # if self.check_transforms('medium2_hob_frame'):
         #     medium2_hob = PoseStamped()
@@ -66,7 +66,7 @@ class DynamicPlanningScene:
             big_hob.pose.orientation.x, big_hob.pose.orientation.y, big_hob.pose.orientation.z, big_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
             big_hob.pose.position.x, big_hob.pose.position.y, big_hob.pose.position.z = .0,.0,.0
             self.planning_scene_interface.add_mesh("big_hob", big_hob, os.path.join(local_mesh_repo_dir,'meshes/small_hob_pivot_in_center.stl'))
-            self.setColor(name="big_hob",r=0.5,g=0.5,b=0.5,a=0.7)
+            self.setColor(name="big_hob",r=0.5,g=0.5,b=0.5,a=0.85)
             self.sendColors()
         if self.check_transforms('pcb_frame'):
             big_hob = PoseStamped()
@@ -74,7 +74,7 @@ class DynamicPlanningScene:
             big_hob.pose.orientation.x, big_hob.pose.orientation.y, big_hob.pose.orientation.z, big_hob.pose.orientation.w = 0.0, 0.0, 0.0, 1.0
             big_hob.pose.position.x, big_hob.pose.position.y, big_hob.pose.position.z = .0,.0,.0
             self.planning_scene_interface.add_mesh("pcb", big_hob, os.path.join(local_mesh_repo_dir,'meshes/pcb.stl'))
-            self.setColor(name="pcb",r=0.5,g=0.5,b=0.5,a=0.7)
+            self.setColor(name="pcb",r=0.0,g=0.65,b=0.0,a=0.9)
             self.sendColors()
 
     def setColor(self, name, r, g, b, a=0.9):
