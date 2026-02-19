@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="screw_gripper" params="prefix_gripper connected_to">
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+
+        <link name="${prefix_gripper}mount_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://elux_screwing_robot_description/meshes/elux_gripper_screwing.stl" scale="1 1 1" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <material name="LightBlack">
+                    <color rgba="0.15 0.15 0.15 1.0" />
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://elux_screwing_robot_description/meshes/elux_gripper_screwing.stl" scale="1 1 1" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0 " />
+            </collision>
+        </link>
+
+        <joint name="screwing_gripper_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+            <parent link="${connected_to}" />
+            <child link="${prefix_gripper}mount_link" />
+        </joint>
+
+        <link name="screw_tip_link" />
+        <joint name="screw_tip_joint" type="fixed">
+            <origin xyz="0. 0. 0." rpy="0 0 0" />
+            <parent link="${prefix_gripper}mount_link" />
+            <child link="screw_tip_link" />
+        </joint>
+
+
+    </xacro:macro>
+</robot>

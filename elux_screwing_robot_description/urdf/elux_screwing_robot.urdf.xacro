@@ -1,0 +1,30 @@
+<robot name="elux_screwing_robot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+    <xacro:include filename="$(find elux_screwing_robot_description)/urdf/aluminum_robot_base.xacro" />
+    <xacro:include filename="$(find ur_description)/urdf/inc/ur20_macro.xacro" />
+    <xacro:include filename="$(find elux_screwing_robot_description)/urdf/screw_gripper.xacro" />
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" /> 
+
+    <xacro:arg name="prefix_base" default="aluminum_" />
+    <xacro:arg name="ur_prefix" default="" />
+    <xacro:arg name="prefix_gripper" default="screw_gripper_" />
+
+    <link name="world"/>
+    
+    <xacro:aluminum_robot_base prefix_base="$(arg prefix_base)" connected_to="world" />
+    <xacro:ur20_robot prefix="$(arg ur_prefix)" />
+    <xacro:screw_gripper prefix_gripper="$(arg prefix_gripper)" connected_to="$(arg ur_prefix)tool0" />
+    <xacro:sensor_d415 parent="$(arg ur_prefix)tool0">
+        <origin xyz="-0.025 -0.045 0.018" rpy="0 ${-M_PI/2} ${M_PI/2}" />
+    </xacro:sensor_d415>
+
+    <joint name="$(arg ur_prefix)base_link_joint" type="fixed">
+        <parent link="robot_mount_link" />
+        <child link="$(arg ur_prefix)base_link" />
+        <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
+    </joint>
+
+
+</robot>
