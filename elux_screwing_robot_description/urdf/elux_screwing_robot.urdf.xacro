@@ -2,6 +2,7 @@
 
     <xacro:property name="M_PI" value="3.1415926535897931" />
 
+    <xacro:include filename="$(find elux_screwing_robot_description)/urdf/environment.xacro" />
     <xacro:include filename="$(find elux_screwing_robot_description)/urdf/aluminum_robot_base.xacro" />
     <xacro:include filename="$(find ur_description)/urdf/inc/ur20_macro.xacro" />
     <xacro:include filename="$(find elux_screwing_robot_description)/urdf/screw_gripper.xacro" />
@@ -13,6 +14,7 @@
 
     <link name="world"/>
     
+    <xacro:environment connected_to="world" />
     <xacro:aluminum_robot_base prefix_base="$(arg prefix_base)" connected_to="world" />
     <xacro:ur20_robot prefix="$(arg ur_prefix)" />
     <xacro:screw_gripper prefix_gripper="$(arg prefix_gripper)" connected_to="$(arg ur_prefix)tool0" />
